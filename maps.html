@@ -52,7 +52,13 @@ fetch(mapDatUrl)
     .then(data => {
         data,foreach(pin=>{
             const marker = L.marker([pin,lat, pinlng]).addTo(map);
-            marker.bindPopup(`&{pin.name}<br>&{pin.description}`);
+            const img = `<img src='$(pin.img)' class="popup-image">`;
+            marker.bindPopup(`
+            ${img} <br>
+            <b>${pin.title}</b>
+            <p>${pin.description}
+            `);
+
             console.log(`${pin.name} Loaded ` + Data());
         });
     })
